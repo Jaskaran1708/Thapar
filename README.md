@@ -17,3 +17,14 @@
 </div>
 <br>
 <div> I have learned this django project from youtube (https://www.youtube.com/watch?v=I6rR3Se72BU&t=17511s) </div>
+<hr>
+<div> Things I have learned<ul>
+  <li>How to create a Model</li>
+  <li>How to create a Form</li>
+  <li>How to create a class/object based view</li>
+  <li>How to link a view to the url</li>
+  <li>How to create a link between tables</li>
+  <li>How to fetch data from tables</li>
+  <li>How to display data from a table</li>
+</ul>
+</div>
