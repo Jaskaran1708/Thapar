@@ -1,5 +1,16 @@
 <h1> Shopping Site </h1>
-<div> <h2>This is an Django E-Commerce Project which has </h2> <ul>
+<div><h2> how to start this project</h2>
+<ol>
+  <li>Install VScode</li>
+  <li>Open the folder in the VScode where you have downloaded the project</li>
+  <li>Open new terminal</li>
+  <li>Write 'cd shoppingly'</li>
+  <li>Again write 'cd shoppingly'</li>
+  <li>Then write 'python manage.py runserver'</li>
+</ol>
+  <p> Congrats!, Your project is running</p>
+</div>
+<div> <h3>This is an Django E-Commerce Project which has </h3> <ul>
   <li>Customer Registration</li>
   <li>Login</li>
   <li>Password Reset</li>
@@ -28,3 +39,4 @@
   <li>How to display data from a table</li>
 </ul>
 </div>
+
