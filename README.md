@@ -4,6 +4,7 @@
   <li>Install VScode</li>
   <li>Open the folder in the VScode where you have downloaded the project</li>
   <li>Open new terminal</li>
+  <li>Install Django by writing 'pip install django'</li>
   <li>Write 'cd shoppingly'</li>
   <li>Again write 'cd shoppingly'</li>
   <li>Then write 'python manage.py runserver'</li>
