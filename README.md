@@ -1,5 +1,5 @@
 <h1> Shopping Site </h1>
-<div><h2> how to start this project</h2>
+<div><h2> How to start this project</h2>
 <ol>
   <li>Install VScode</li>
   <li>Open the folder in the VScode where you have downloaded the project</li>
