@@ -1,5 +1,5 @@
 <h1> Shopping Site </h1>
-<div> This is an Django E-Commerce Project which has  <ul>
+<div> <h2>This is an Django E-Commerce Project which has </h2> <ul>
   <li>Customer Registration</li>
   <li>Login</li>
   <li>Password Reset</li>
@@ -18,7 +18,7 @@
 <br>
 <div> I have learned this django project from youtube (https://www.youtube.com/watch?v=I6rR3Se72BU&t=17511s) </div>
 <hr>
-<div> Things I have learned<ul>
+<div> <h3>Things I have learned </h3><ul>
   <li>How to create a Model</li>
   <li>How to create a Form</li>
   <li>How to create a class/object based view</li>
