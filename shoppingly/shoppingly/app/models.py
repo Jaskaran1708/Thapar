@@ -74,7 +74,9 @@ class cart(models.Model):
     @property
     def total_cost(self):
         return self.Quantity * self.Product.Discounted_price
-
+    @property
+    def cart_counter(self):
+        return self.Product.count()
 Status_choice = (('Pending', 'Pending'),
                  ('Accepted', 'Accepted'),
                  ('Packed', 'Packed'),

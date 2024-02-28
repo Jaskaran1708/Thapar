@@ -31,6 +31,16 @@ class ProductDetailedView(View):
   item_already_in_cart = False
   item_already_in_cart = cart.objects.filter(Q(Product= prduct.id)& Q(user = request.user)).exists()
   return render(request, 'app/productdetail.html', {'product':prduct, 'item_already_in_cart': item_already_in_cart})
+ 
+# def cart_counter(request):
+#    cart_count = cart.objects.filter(user = request.user).count()
+# #    return render(request, 'addtocart.html', {'cart_count': cart_count})
+# def cart_count(request):
+#     # Retrieve the total count of products in the cart
+#     cart_count = cart.objects.filter(user=request.user).count()  # Assuming you have a user-based cart system
+
+#     # Pass the cart count to the template context
+#     return render(request, 'addtocart.html', {'cart_count': cart_count})
 
 @login_required
 def add_to_cart(request):
@@ -45,6 +55,7 @@ def show_cart(request):
  if request.user.is_authenticated:
   user = request.user
   Cart = cart.objects.filter(user = user)
+  cart_count = cart.objects.filter(user=request.user).count()
   amount = 0.0
   shipping_amount= 70.0
   total_amount = 0.0
@@ -54,7 +65,7 @@ def show_cart(request):
     tempamount = (p.Quantity * p.Product.Discounted_price) 
     amount += tempamount
     total_amount = amount + shipping_amount
-    return render(request, 'app/addtocart.html', {'carts': Cart, 'total_amount': total_amount, 'amount': amount})
+    return render(request, 'app/addtocart.html', {'carts': Cart, 'total_amount': total_amount, 'amount': amount, 'cart_count': cart_count})
   else:
    return render(request, 'app/emptycart.html')
   
@@ -174,10 +185,41 @@ def mobile(request, data= None):
  return render(request, 'app/mobile.html', {'mobiles' : mobiles})
 
 @login_required
+def laptop(request, data = None):
+   if data == None:
+      laptop = product.objects.filter(Category = "L")
+   elif data == 'Apple' or data == 'Dell' or data == 'Lenovo':
+      laptop = product.objects.filter(Category = 'L').filter(Brand = data)
+   elif data == 'below':
+      laptop = product.objects.filter(Category = 'L').filter(Discounted_price__lt = 65000)
+   elif data == 'above':
+      laptop = product.objects.filter(Category = 'L').filter(Discounted_price__gt = 65000)
+   return render(request, 'app/laptop.html', {'laptop' : laptop})
+      
+
+@login_required
 def topwear(request,data = None):
  if data == None:
   topwear = product.objects.filter(Category = 'TW')
- return render(request,'app/topwear.html')
+ elif  data == 'People' or data == 'Tommy Hilfiger':
+  topwear = product.objects.filter(Category = 'TW').filter(Brand = data)
+ elif data == 'below':
+  topwear = product.objects.filter(Category = 'TW').filter(Discounted_price__lt = 600)
+ elif data == 'above':
+  topwear = product.objects.filter(Category = 'TW').filter(Discounted_price__gt = 600)
+ return render(request,'app/topwear.html', {'topwear':topwear})
+
+@login_required
+def bottomwear(request,data = None):
+ if data == None:
+  bottomwear = product.objects.filter(Category = 'BW')
+ elif  data == 'Tommy Hilfiger' or data == 'Levis':
+  bottomwear = product.objects.filter(Category = 'BW').filter(Brand = data)
+ elif data == 'below':
+  bottomwear = product.objects.filter(Category = 'BW').filter(Discounted_price__lt = 700)
+ elif data == 'above':
+  bottomwear = product.objects.filter(Category = 'BW').filter(Discounted_price__gt = 700)
+ return render(request,'app/bottomwear.html', {'bottomwear': bottomwear})
 
 class CustomerRegistrationView(View):
  def get(self,request):
