@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.contrib.auth import authenticate,login,logout
 
 class ProductView(View):
  def get(self, request):
@@ -41,6 +42,8 @@ class ProductDetailedView(View):
 
 #     # Pass the cart count to the template context
 #     return render(request, 'addtocart.html', {'cart_count': cart_count})
+
+
 
 @login_required
 def add_to_cart(request):
@@ -260,5 +263,13 @@ def payment_done(request):
    return redirect('/orders')
 
 	
-		
-			
+def searchview(request):
+   query = request.GET.get('q')
+   result = product.objects.filter(Title__icontains = query)
+   displayed_ids = list(set(obj.id for obj in result))
+
+   return render(request, "app/search.html", {'result': result, 'displayed_ids': displayed_ids})
+
+def logoutview(request):
+   logout(request)
+   return redirect('login')
