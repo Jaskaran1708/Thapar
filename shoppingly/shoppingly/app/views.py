@@ -30,7 +30,7 @@ class ProductDetailedView(View):
  def get(self,request,pk):
   prduct = product.objects.get(pk=pk)
   item_already_in_cart = False
-  item_already_in_cart = cart.objects.filter(Q(Product= prduct.id)& Q(user = request.user)).exists()
+  item_already_in_cart = cart.objects.filter(Q(Product= prduct.id)).exists()
   return render(request, 'app/productdetail.html', {'product':prduct, 'item_already_in_cart': item_already_in_cart})
  
 # def cart_counter(request):

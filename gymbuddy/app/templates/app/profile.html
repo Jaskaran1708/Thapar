@@ -1,0 +1,33 @@
+{% extends 'app/base.html'%}
+{% load static %}
+{% block quotes%}
+
+<div class="sidebar">
+  <a class="active" href="#profile">Profile</a>
+  <a href="#services">Complaints</a>
+  <a href="#membership">Membership details</a>
+  <a href="payment">Buy membership</a>
+</div>
+
+<div class="main-content">
+  {% if messages %}
+      <div>
+          {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                  {{ message }}
+              </div>
+          {% endfor %}
+      </div>
+  {% endif %}
+  
+  <h1>Update Profile</h1>
+  <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Save</button>
+  </form>
+</div>
+
+
+{% endblock quotes %}

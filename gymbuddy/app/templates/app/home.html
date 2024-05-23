@@ -1,0 +1,136 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block quotes%} 
+
+<div class="quote">
+    <p>“The last three or four reps is what makes the muscle grow. This area of pain divides a champion from someone who is not a champion.” – Arnold Schwarzenegger</p>
+</div>
+
+{% endblock quotes%}
+{% block banner%} 
+
+<div class="background">
+    <div class="overlay"></div>
+    <div class="motivation">
+        <p>Stepping into the gym isn't just about physical exercise – it's a commitment to your overall well-being and personal growth. It's about embracing the challenge, pushing your limits, and discovering the strength you never knew you had. With each workout, you're not only sculpting your body but also nurturing your mind and spirit. It's a journey of self-discovery and empowerment, where every drop of sweat is a testament to your dedication and determination. So, lace up your shoes, harness your inner strength, and embark on this transformative journey towards a healthier, happier you.</p>
+        <br>
+        <p> The gym isn't just a destination; it's a journey towards self-discovery and empowerment. With each rep, each set, you redefine what's possible – embrace the journey, and let your dedication pave the way to greatness. </p>
+    </div>
+    <div class="photo">
+        <img src="{% static 'app/images/background.png' %}" alt="Photo">
+    </div>
+    
+</div>
+
+{% endblock banner%}
+{% block cards%} 
+
+<div class="background">
+    <div class="overlay"></div>
+    
+    <div class="content">
+        <div class="container">
+            <div class="box">
+              <span class="title">Try your first training for free</span>
+              <div>
+                <strong>Get fit and start your fitness journey with our complimentary trial session at our gym today!</strong>
+                
+              </div>
+            </div>
+          </div>
+          <a href="{% url 'about-us' %}" class="card-link">
+            <div class="container" >
+              <div class="box" >
+                <span class="title" >About us</span>
+                <div>
+                  <strong>At our gym, we foster a culture of inclusivity and motivation, providing top-notch facilities and expert guidance for your fitness goals.</strong>
+
+                </div>
+              </div>
+            </div>
+          </a>
+          <a href="{% url 'exercises' %}" class="card-link">
+            <div class="container">
+              <div class="box">
+                <span class="title">Exercises</span>
+                <div>
+                  <strong>Explore an array of invigorating workouts designed to sculpt your body and ignite your passion for fitness.</strong>
+
+                </div>
+              </div>
+            </div>
+          </a>
+          
+    </div>
+</div>
+
+{% endblock cards%}
+{% block numbers%} 
+
+<div class="number">
+    <p> Numbers...</p>
+</div>
+<div class = numberinside>
+    <div class="tooltip-container">
+        <span class="tooltip">18</span>
+        <span class="text">Happy Users</span>
+        <span>1040</span>
+    </div>
+    <div class="tooltip-container">
+        <span class="tooltip">18</span>
+        <span class="text">Area</span>
+        <span>350 sqm</span>
+    </div>
+    <div class="tooltip-container">
+        <span class="tooltip">18</span>
+        <span class="text">Days/week</span>
+        <span>6</span>
+    </div>
+    
+</div> 
+
+<div class="start">
+    <div class="container">
+        <div class="box">
+          <span class="title">Start your healthy
+            lifestyle today</span>
+          <div>
+            <strong>Transform your life starting today by prioritizing your health and well-being. With each positive choice you make, you're one step closer to realizing your full potential and living your best life</strong>
+
+          </div>
+        </div>
+      </div>
+    <div class="container">
+        <div class="box">
+          <span class="title">Opening hours</span>
+          <div>
+            <strong> Morning - 5AM to 9AM    <br> 
+                <br>     
+                Evening - 5PM to 10PM
+            </strong>
+            
+
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="box">
+          <span class="title">Contact Us</span>
+          <div>
+            <strong> V.P.O. Palli Jhikki, <br>
+            <br>+91-8284075609
+            </strong>
+            
+
+
+          </div>
+        </div>
+      </div>
+    
+
+</div>
+
+
+{%endblock numbers%}
