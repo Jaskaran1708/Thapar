@@ -43,3 +43,24 @@ class Membership_Status(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+class Muscle(models.Model):
+    name = models.CharField(max_length = 20)
+    description = models.CharField( max_length=1000, blank= True, null= True)
+
+    def __str__(self):
+        return self.name
+
+class SubMuscle(models.Model):
+    name = models.CharField(max_length=20)
+    parent_muscle = models.ForeignKey(Muscle,related_name='sub_muscles', on_delete= models.CASCADE)
+
+    def __str__(self):
+        return self.name
+    
+class Exercise(models.Model):
+    name = models.CharField( max_length=50)
+    sub_muscle = models.ForeignKey(SubMuscle, related_name='exercises',on_delete= models.CASCADE)
+
+    def __str__(self):
+        return self.name

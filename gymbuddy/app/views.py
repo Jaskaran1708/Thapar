@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .form import CustomerProfileForm
-from .models import User, Customer
+from .models import *
 from django.views.generic import View
 from django.contrib import messages
 from django.conf import settings
@@ -71,12 +71,35 @@ class payment(TemplateView):
 
 def Payment_successful(request):
     if request.method == "POST":
-       charge = stripe.Charge.create(amount = 100,
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        charge = stripe.Charge.create(amount = 100,
           currency = 'inr',
           description = ' Payment ',
           source = request.POST['stripeToken']
           )
           
     return render(request, 'app/payment_successful.html')
+
+class MuscleView(View):
+    template_name = 'app/muscle.html'
+    def get(self,request):
+       muscles = Muscle.objects.all()
+       return render(request, self.template_name, {'muscles': muscles})
+    
+class SubMuscleView(View):
+    template_name = 'app/submuscle.html'
+
+    def get(self, request, muscle_id):
+        muscle = get_object_or_404(Muscle, id=muscle_id)
+        sub_muscles = muscle.sub_muscles.all()
+        return render(request, self.template_name, {'muscle': muscle, 'sub_muscles': sub_muscles})
+    
+class ExerciseView(View):
+    template_name = 'app/submuscle.html'
+
+    def get(self, request, sub_muscle_id):
+        sub_muscle = get_object_or_404(SubMuscle, id=sub_muscle_id)
+        exercises = sub_muscle.exercises.all()
+        return render(request, self.template_name, {'sub_muscle': sub_muscle, 'exercises': exercises})
 
    

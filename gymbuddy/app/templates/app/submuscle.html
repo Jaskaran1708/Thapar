@@ -1,0 +1,36 @@
+{% extends 'app/base.html'%}
+{%load static%}
+{% block quotes%} 
+    
+    <section class="exercises">
+        {% for sub_muscle in sub_muscles%}
+          <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <p class="title">
+                        
+
+                        {{sub_muscle.name}}
+
+                        
+                    </p>
+                </div>
+                <div class="flip-card-back">
+                    <ul >
+                        {% for exercise in exercises %}
+                    <li>{{ exercise.name }}</li>
+                    {% empty %}
+                    <li>No exercises available.</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        {% endfor %}
+         
+          
+        </section>
+
+
+{% endblock quotes%}

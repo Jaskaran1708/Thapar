@@ -1,0 +1,72 @@
+{% extends 'app/base.html'%}
+{% load static%}
+{% block quotes%}
+    <main>
+        <section class="about-us">
+            <div class="quotes">
+                <h1>Muscle Group</h1>
+                <div class="section-content">
+                    <ul class = 'aboutus' >
+                        {% for muscle in muscles %}
+                            <li><a href="{% url 'submuscle' muscle.id %}" class = 'aboutus'>{{ muscle.name }}</a>
+                                <p >{{ muscle.description }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    {% comment %} <a href="{% url 'chest' %}" class="card-link">
+                        <div class="aboutus">
+                            <h2>Chest</h2>
+                            <p>Chest exercises are essential for building upper body strength and enhancing muscle definition, contributing significantly to a well-balanced and muscular physique. These workouts not only target the pectoral muscles but also engage the shoulders and triceps, promoting overall upper body development. Regular chest exercises improve posture, support better functional movement, and make daily activities easier and more efficient. By incorporating a variety of chest exercises into your fitness routine, you can achieve greater strength, stability, and aesthetic appeal.</p>
+                        </div>
+                    </a>
+                    <br>
+                    <a href="{% url 'back' %}" class="card-link">
+                        <div class="aboutus">
+                            <h2>Back</h2>
+                            <p> Back exercises are crucial for developing a strong, stable, and well-balanced upper body. These workouts target the major muscles of the back, such as the lats, traps, and rhomboids, enhancing muscle definition and improving posture. Strengthening your back can alleviate common issues like lower back pain and improve your performance in both everyday activities and other physical exercises. Incorporating a variety of back exercises into your routine helps to ensure a well-rounded physique and better overall functional fitness. </p></div>
+                    </a>    
+                        <br>
+                    <a href="{% url 'biceps' %}" class="card-link">    
+                        <div class="aboutus">
+                            <h2>Biceps</h2>
+                            <p>Biceps exercises are important for building strong, well-defined upper arms. These workouts target the biceps brachii and supporting muscles, enhancing arm strength and aesthetics. Strong biceps improve your ability to perform various pulling and lifting tasks, both in daily life and during other exercises. Regular biceps training contributes to better overall arm development and ensures a balanced and powerful upper body.</p>
+                            </div>
+                    </a>
+                        <br>
+                    <a href="{% url 'triceps' %}" class="card-link">
+                            <div class="aboutus">
+                                <h2>Triceps</h2>
+                                <p>Triceps exercises are key to developing strong, well-proportioned upper arms. These workouts target the triceps brachii, which make up a significant portion of the arm's muscle mass. Strong triceps improve pushing movements, enhance overall arm strength, and contribute to better upper body functionality. Incorporating a variety of triceps exercises into your fitness routine ensures balanced muscle development and supports a well-rounded arm aesthetic.</p>
+                            </div>
+                    </a>
+                            <br>
+                    <a href="{% url 'legs' %}" class="card-link">
+                            <div class="aboutus">
+                                <h2>Legs</h2>
+                                <p><p>Leg exercises are fundamental for building strength, power, and endurance in the lower body. These workouts target the quadriceps, hamstrings, glutes, and calves, contributing to improved muscle tone and overall leg development. Regular leg training enhances athletic performance, supports better balance and stability, and makes daily activities like walking, climbing stairs, and lifting objects easier. By incorporating diverse leg exercises into your fitness regime, you can achieve stronger, more resilient legs and a well-proportioned physique.</p></p>
+                            </div>
+                    </a>
+                            <br>
+                    <a href="{% url 'shoulder' %}" class="card-link">
+                            <div class="aboutus">
+                                <h2>Shoulder</h2>
+                                <p>Shoulder exercises are vital for developing strong, stable, and well-defined shoulders. These workouts target the deltoids and the surrounding muscles, enhancing shoulder strength and mobility. Strong shoulders improve upper body performance, support better posture, and reduce the risk of injuries in daily activities and sports. Incorporating a variety of shoulder exercises into your routine ensures balanced muscle development and contributes to an impressive and functional upper body.</p>
+                            </div>
+                    </a>
+                            <br>
+                    <a href="{% url 'abs' %}" class="card-link">
+                            <div class="aboutus">
+                                <h2>Abs</h2>
+                                <p>Abs exercises are essential for strengthening the core, which includes the abdominal muscles, obliques, and lower back. A strong core improves posture, enhances balance and stability, and supports overall physical performance. Regular abs workouts help define the midsection, contribute to better functional movement, and reduce the risk of injuries by stabilizing the spine. By incorporating a range of abs exercises into your routine, you can achieve a stronger, more resilient core and a well-toned physique.</p>
+                            </div>
+                    </a> {% endcomment %}
+                            
+                            
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    {% endblock quotes%}

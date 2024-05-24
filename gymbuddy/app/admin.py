@@ -2,7 +2,10 @@ from django.contrib import admin
 from .models import(Customer,
                     Payment,
                     Notification,
-                    Membership_Status)
+                    Membership_Status,
+                    Muscle,
+                    SubMuscle,
+                    Exercise)
 # Register your models here.
 @admin.register(Customer)
 class Customermodeladmin(admin.ModelAdmin):
@@ -19,3 +22,15 @@ class Notificationmodeladmin(admin.ModelAdmin):
 @admin.register(Membership_Status)
 class Membership_Statusmodeladmin(admin.ModelAdmin):
     list_display = ['user', 'start_date', 'end_date','status' ]
+
+@admin.register(Muscle)
+class Musclemodeladmin(admin.ModelAdmin):
+    list_display = ['name', 'description']
+
+@admin.register(SubMuscle)
+class SubMusclemodeladmin(admin.ModelAdmin):
+    list_display = ['name', 'parent_muscle']
+
+@admin.register(Exercise)
+class Exercisemodeladmin(admin.ModelAdmin):
+    list_display = ['name', 'sub_muscle']

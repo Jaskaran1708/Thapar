@@ -2,7 +2,7 @@
 {% load static%}
 {% block quotes%}
 <h2> pay </h2>
-<form action = "% url 'successfull' %}" method = 'post'>
+<form action = "{% url 'successfull' %}" method = 'post'>
     {%csrf_token%}
     <script src = 'http://checkout.stripe.com/checkout.js' class ="stripe-button"
         data-key = '{{key}}'
