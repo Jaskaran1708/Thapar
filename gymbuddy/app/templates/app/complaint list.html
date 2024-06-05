@@ -1,0 +1,29 @@
+{% extends 'app/base.html'%}
+{% load static %}
+{% block quotes%}
+
+<div class="sidebar">
+  <a class="active" href="profile">Profile</a>
+  <a href="{% url 'complaint' %}">Complaints</a>
+  <a href="#membership">Membership details</a>
+  <a href="{% url 'payment' %}">Buy membership</a>
+</div>
+
+<div class="main-content">
+    <h2>Your Complaints</h2>
+    <ul>
+      {% for complaint in complaint %}
+        <li>
+          <p>{{ complaint.title }}</p>
+          <p>{{ complaint.description }}</p>
+          {% if complaint.image %}
+            <img src="{{ complaint.image.url }}" alt="Complaint Image">
+          {% endif %}
+          <p>Status: {{ complaint.get_status_display() }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+</div>
+
+
+{% endblock quotes %}

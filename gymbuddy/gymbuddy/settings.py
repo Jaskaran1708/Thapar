@@ -125,3 +125,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STRIPE_SECTER_KEY = 'sk_test_51PJU8VSAY0feu41ttmSOGPcdV3ZGEdXhAH3P0bpIlegvl1wfOxWaZruIBOYy1EbVmqZtJWiyWfOhkKn6ytUGxdFs007q9cqeDt'
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51PJU8VSAY0feu41t2jTPtfSrI1p9LbDHPnt3ShGbxr7nRYrdy5cldZy3i1w8EikrX3Q1fAYdpOAxxY91hSg6Ktap00wOyqIfPv'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

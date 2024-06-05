@@ -11,7 +11,9 @@ urlpatterns = [
     path('muscle/', views.MuscleView.as_view(), name = 'muscle'),
     path('muscles/<int:muscle_id>/', views.SubMuscleView.as_view(), name='submuscle'),
     path('exercises/<int:sub_muscle_id>/', views.ExerciseView.as_view(), name='exercise'),
-    # path('exercises/', views.exercises, name = 'exercises'),
+    path('submit_complaints/', views.Complaints, name = 'complaint'),
+    path('complaints/', views.complaint_lists, name = 'complaint_list'),
+    path('membership_status/', views.membership_status, name = 'membership'),
     # path('chest/', views.chest, name = 'chest'),
     # path('back/', views.back, name = 'back'),
     # path('shoulder/', views.shoulder, name = 'shoulder'),
@@ -24,4 +26,7 @@ urlpatterns = [
     path('successfull/', views.Payment_successful, name = 'successfull'),
 
     # Add more URL patterns as needed
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

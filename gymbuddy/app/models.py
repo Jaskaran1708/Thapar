@@ -64,3 +64,18 @@ class Exercise(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Complaints(models.Model):
+    choices = [
+        ('pending', 'Pending'),
+        ('in_progress', 'In progress'),
+        ('resolved' , 'Resolved')
+    ]
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100,blank= True,null= True)
+    description = models.TextField()
+    image = models.ImageField(upload_to='gymbuddy\app\static\app\complaints', blank= True, null= True)
+    status = models.CharField(choices= choices,default= 'pending' ,max_length=50)
+    
+    def __str__(self):
+        return self.title

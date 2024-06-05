@@ -5,7 +5,8 @@ from .models import(Customer,
                     Membership_Status,
                     Muscle,
                     SubMuscle,
-                    Exercise)
+                    Exercise, 
+                    Complaints)
 # Register your models here.
 @admin.register(Customer)
 class Customermodeladmin(admin.ModelAdmin):
@@ -34,3 +35,7 @@ class SubMusclemodeladmin(admin.ModelAdmin):
 @admin.register(Exercise)
 class Exercisemodeladmin(admin.ModelAdmin):
     list_display = ['name', 'sub_muscle']
+
+@admin.register(Complaints)
+class Complaintmodeladmin(admin.ModelAdmin):
+    list_display = ['user', 'title','description', 'image', 'status']

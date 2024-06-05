@@ -1,11 +1,12 @@
-from django.shortcuts import render, get_object_or_404
-from .form import CustomerProfileForm
+from django.shortcuts import render, get_object_or_404, redirect
+from .form import CustomerProfileForm, ComplaintForm
 from .models import *
 from django.views.generic import View
 from django.contrib import messages
 from django.conf import settings
 import stripe
 from django.views.generic import TemplateView
+import datetime
 
 
 def login(request):
@@ -102,4 +103,42 @@ class ExerciseView(View):
         exercises = sub_muscle.exercises.all()
         return render(request, self.template_name, {'sub_muscle': sub_muscle, 'exercises': exercises})
 
-   
+
+
+
+
+def submit_complaint(request):
+    if request.method == 'POST':
+        form = ComplaintForm(request.POST, request.FILES)
+        if form.is_valid():
+            complaint = form.save(commit=False)
+            complaint.user = request.user
+            complaint.save()
+            return redirect('complaint_list')
+    else:
+        form = ComplaintForm()
+    return render(request, 'app/complaints.html', {'form': form})
+
+def complaint_lists(request):
+    complaint = Complaints.objects.filter(user=request.user)
+    return render(request, 'app/complaint list.html', {'complaint': complaint})
+
+def membership_status(request):
+    user = request.user
+    current_date = datetime.date.today()
+    if request.method == 'POST':
+        start_date = datetime.date.today()
+        end_date = start_date + datetime.timedelta(days=30)
+        membership = Membership_Status.objects.update_or_create(
+            user=user,
+            defaults={'start_date': start_date, 'end_date': end_date, 'status': 'active'}
+        )
+    else:
+        try:
+            membership = Membership_Status.objects.get(user=user)
+            if membership.end_date < current_date:
+                membership.status = 'Inactive'
+                membership.save()
+        except Membership_Status.DoesNotExist:
+            membership = None
+    return render(request, 'app/membership.html', {'membership' : membership})

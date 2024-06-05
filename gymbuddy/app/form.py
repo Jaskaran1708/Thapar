@@ -1,5 +1,5 @@
 from django import forms
-from .models import  Customer
+from .models import  Customer, Complaints
 
 class CustomerProfileForm(forms.ModelForm):
   class Meta:
@@ -8,3 +8,8 @@ class CustomerProfileForm(forms.ModelForm):
     widgets = {'email':forms.TextInput(attrs={'class':'form-control'}), 'first_name':forms.TextInput(attrs={'class':'form-control'}), 
     'last_name':forms.TextInput(attrs={'class':'form-control'}),
     'phone_number':forms.NumberInput(attrs={'class':'form-control'})}
+
+class ComplaintForm(forms.ModelForm):
+  class Meta:
+    model = Complaints
+    fields = ['title','description', 'image']
