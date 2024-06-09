@@ -138,5 +138,5 @@ EMAIL_HOST_USER = 'bhupinderkaur8284075609@gmail.com'
 EMAIL_HOST_PASSWORD = 'jas1sim2'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build', 'static')
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
