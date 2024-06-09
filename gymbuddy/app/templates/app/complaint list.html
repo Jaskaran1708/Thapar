@@ -3,9 +3,9 @@
 {% block quotes%}
 
 <div class="sidebar">
-  <a class="active" href="profile">Profile</a>
-  <a href="{% url 'complaint' %}">Complaints</a>
-  <a href="#membership">Membership details</a>
+  <a  href="{% url 'profile' %}">Profile</a>
+  <a class="active" href="{% url 'complaint' %}">Complaints</a>
+  <a href="{% url 'membership' %}">Membership details</a>
   <a href="{% url 'payment' %}">Buy membership</a>
 </div>
 
@@ -19,7 +19,7 @@
           {% if complaint.image %}
             <img src="{{ complaint.image.url }}" alt="Complaint Image">
           {% endif %}
-          <p>Status: {{ complaint.get_status_display() }}</p>
+          <p>Status: {{ complaint.get_status_display }}</p>
         </li>
       {% endfor %}
     </ul>

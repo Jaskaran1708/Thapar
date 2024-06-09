@@ -4,14 +4,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.login, name='login'),
+    path('', views.login_, name='login'),
     path('signup', views.signup, name = 'signup'),
     path('home/', views.home, name = 'home'),
     path('about-us/', views.aboutus, name = 'about-us'),
     path('muscle/', views.MuscleView.as_view(), name = 'muscle'),
     path('muscles/<int:muscle_id>/', views.SubMuscleView.as_view(), name='submuscle'),
-    path('exercises/<int:sub_muscle_id>/', views.ExerciseView.as_view(), name='exercise'),
-    path('submit_complaints/', views.Complaints, name = 'complaint'),
+    # path('exercises/<int:sub_muscle_id>/', views.ExerciseView.as_view(), name='exercise'),
+    path('submit_complaints/', views.submit_complaint, name = 'complaint'),
     path('complaints/', views.complaint_lists, name = 'complaint_list'),
     path('membership_status/', views.membership_status, name = 'membership'),
     # path('chest/', views.chest, name = 'chest'),

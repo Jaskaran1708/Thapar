@@ -74,7 +74,7 @@ class Complaints(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100,blank= True,null= True)
     description = models.TextField()
-    image = models.ImageField(upload_to='gymbuddy\app\static\app\complaints', blank= True, null= True)
+    image = models.ImageField(upload_to='D:/projects/gymbuddy/media/gymbuddy/app', blank= True, null= True)
     status = models.CharField(choices= choices,default= 'pending' ,max_length=50)
     
     def __str__(self):

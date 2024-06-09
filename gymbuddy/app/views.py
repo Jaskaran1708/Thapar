@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .form import CustomerProfileForm, ComplaintForm
+from .form import *
 from .models import *
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic import View
 from django.contrib import messages
 from django.conf import settings
@@ -9,11 +11,37 @@ from django.views.generic import TemplateView
 import datetime
 
 
-def login(request):
-    return render(request, 'app/login.html')
+def login_(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)  
+                return redirect('home')  
+            else:
+                return render(request, 'app/login.html', {'form': form, 'error': 'Invalid username or password'})
+        else:
+            return render(request, 'app/login.html', {'form': form, 'error': 'Invalid username or password'})
+    else:
+        form = AuthenticationForm()
+    return render(request, 'app/login.html', {'form': form})
 
 def signup(request):
-    return render(request, 'app/signup.html')
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home') 
+    else:
+        form = SignUpForm()
+    return render(request, 'app/signup.html', {'form': form})
 
 def home(request):
     return render(request, 'app/home.html')
@@ -85,6 +113,7 @@ class MuscleView(View):
     template_name = 'app/muscle.html'
     def get(self,request):
        muscles = Muscle.objects.all()
+    #    print(muscles)
        return render(request, self.template_name, {'muscles': muscles})
     
 class SubMuscleView(View):
@@ -93,15 +122,33 @@ class SubMuscleView(View):
     def get(self, request, muscle_id):
         muscle = get_object_or_404(Muscle, id=muscle_id)
         sub_muscles = muscle.sub_muscles.all()
-        return render(request, self.template_name, {'muscle': muscle, 'sub_muscles': sub_muscles})
-    
-class ExerciseView(View):
-    template_name = 'app/submuscle.html'
+        all_exercises = []
+        for sub_muscle in sub_muscles:
+            a =  get_object_or_404(SubMuscle, id=sub_muscle.id)
+            exercises = a.exercises.all()
+            abc = []
+            for exercise in exercises:
+                abc.append(exercise.name)
+            dict_ = {
+                'sub_muscle': sub_muscle.name,
+                'exercises' : abc
+            }
 
-    def get(self, request, sub_muscle_id):
-        sub_muscle = get_object_or_404(SubMuscle, id=sub_muscle_id)
-        exercises = sub_muscle.exercises.all()
-        return render(request, self.template_name, {'sub_muscle': sub_muscle, 'exercises': exercises})
+            all_exercises.append(dict_)
+        # sub_muscle = get_object_or_404(SubMuscle, id=sub_muscle_id)
+        # exercises = sub_muscle.exercises.all()
+       
+    
+        return render(request, self.template_name, {'muscle': muscle, 'sub_muscles': sub_muscles, 'exercises' : all_exercises})
+    
+# class ExerciseView(View):
+#     template_name = 'app/submuscle.html'
+
+#     def get(self, request, sub_muscle_id):
+#         sub_muscle = get_object_or_404(SubMuscle, id=sub_muscle_id)
+#         exercises = sub_muscle.exercises.all()
+#         print(exercises)
+#         return render(request, self.template_name, {'sub_muscle': sub_muscle, 'exercises': exercises})
 
 
 

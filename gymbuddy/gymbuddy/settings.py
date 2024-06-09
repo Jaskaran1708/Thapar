@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure--4ok+zo-@d6!9gwy573dzjjk2%fwjgm-=zn11m#rv3g^w8_e53
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
 
 
 # Application definition
@@ -128,3 +129,14 @@ STRIPE_PUBLISHABLE_KEY = 'pk_test_51PJU8VSAY0feu41t2jTPtfSrI1p9LbDHPnt3ShGbxr7nR
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Or your email service provider
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'bhupinderkaur8284075609@gmail.com'
+EMAIL_HOST_PASSWORD = 'jas1sim2'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build', 'static')
